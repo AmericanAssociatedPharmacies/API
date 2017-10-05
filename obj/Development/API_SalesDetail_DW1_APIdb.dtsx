@@ -1,0 +1,1583 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/27/2017 12:08:03 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="AAP-N202"
+  DTS:CreatorName="AAP\sedwards"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{B71192B0-FE4F-4316-AB03-7D226BDB6D78}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="API_SalesDetail_DW1_APIdb"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{83EA13E3-E90B-4D40-B4D8-75083DFEFAD7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AAPDW1.API]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9DD4AFF1-269C-46EA-A242-F08C7EF4015A}"
+      DTS:ObjectName="AAPDW1.API">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=AAPDW1;Initial Catalog=API;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AAPDW1.SalesODS]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{252E4CD4-BCD6-4108-B8D2-8D8411075844}"
+      DTS:ObjectName="AAPDW1.SalesODS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=AAPDW1;Initial Catalog=SalesODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DB1.API]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{8837131D-0ADD-4C86-8BE2-AFAB690E9C04}"
+      DTS:ObjectName="DB1.API">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DB1;Initial Catalog=API;Provider=SQLNCLI11.1;Integrated Security=SSPI;Packet Size=32767;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{96BC8F60-67C1-405A-ABDD-4CE0060D55C6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ADORecordset">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EC41D678-AFBE-4CB1-A26E-29DABD60ED1E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varInvDate">
+      <DTS:VariableValue
+        DTS:DataType="7">9/27/2017 12:20:56 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:DelayValidation="True"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{975FAE93-7CED-4771-BD4C-506573D140C8}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{E53B01CE-1F23-4469-90F3-8481E54627FE}"
+        DTS:ObjectName="{E53B01CE-1F23-4469-90F3-8481E54627FE}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::ADORecordset" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update Load Table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:DelayValidation="True"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{865163F6-2413-457B-8019-894C823861A9}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Load Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9DD4AFF1-269C-46EA-A242-F08C7EF4015A}"
+              SQLTask:SqlStatementSource="&#x9;UPDATE [dbo].[ETL_SalesDetail_InvDate]&#xA;&#x9;SET IsComplete = 1&#xA;&#x9;, RowUpdatedDate = GETDATE()&#xA;&#x9;WHERE InvDate = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varInvDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Xfer Data"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:DelayValidation="True"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{55A21EF1-31FD-4357-B2AD-0310F545B1C4}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Xfer Data"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[APISalesDetail]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">true</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[AAPDW1.API]"
+                      connectionManagerRefId="Package.ConnectionManagers[AAPDW1.API]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID]"
+                          cachedDataType="i4"
+                          cachedName="ID"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WHAccountID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="32"
+                          cachedName="WHAccountID"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WHAccountID]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[WHAccountID]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InvNbr]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="32"
+                          cachedName="InvNbr"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InvNbr]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvNbr]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InvLine]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="32"
+                          cachedName="InvLine"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InvLine]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvLine]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="75"
+                          cachedName="CustomerName"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerName]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerName]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[APIItemNbr]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="APIItemNbr"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[APIItemNbr]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[APIItemNbr]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ItemDescription]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="125"
+                          cachedName="ItemDescription"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ItemDescription]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ItemDescription]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Qty]"
+                          cachedDataType="numeric"
+                          cachedName="Qty"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Qty]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Qty]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UnitAmount]"
+                          cachedDataType="numeric"
+                          cachedName="UnitAmount"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitAmount]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitAmount]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ItemGrp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedName="ItemGrp"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ItemGrp]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ItemGrp]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AcctGrp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedName="AcctGrp"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AcctGrp]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctGrp]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Territory]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="Territory"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Territory]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Territory]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InvDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="InvDate"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InvDate]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvDate]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LineAmt]"
+                          cachedDataType="numeric"
+                          cachedName="LineAmt"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineAmt]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[LineAmt]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ExtSales]"
+                          cachedDataType="numeric"
+                          cachedName="ExtSales"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ExtSales]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExtSales]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OrderNbr]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="OrderNbr"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderNbr]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderNbr]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NDC_orig]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NDC_orig"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NDC_orig]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[NDC_orig]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NDC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="11"
+                          cachedName="NDC"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NDC]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[NDC]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateLoaded]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="DateLoaded"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateLoaded]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateLoaded]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Type"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Type]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WHNbr]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2"
+                          cachedName="WHNbr"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WHNbr]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[WHNbr]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Rebate]"
+                          cachedDataType="numeric"
+                          cachedName="Rebate"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rebate]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Rebate]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WHAccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="WHAccountID" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InvNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="InvNbr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InvLine]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="InvLine" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="75"
+                          name="CustomerName" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[APIItemNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="APIItemNbr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ItemDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="125"
+                          name="ItemDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Qty]"
+                          dataType="numeric"
+                          name="Qty"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitAmount]"
+                          dataType="numeric"
+                          name="UnitAmount"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ItemGrp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="ItemGrp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AcctGrp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="AcctGrp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Territory]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="Territory" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InvDate]"
+                          dataType="dbTimeStamp2"
+                          name="InvDate"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineAmt]"
+                          dataType="numeric"
+                          name="LineAmt"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ExtSales]"
+                          dataType="numeric"
+                          name="ExtSales"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="OrderNbr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NDC_orig]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NDC_orig" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NDC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="11"
+                          name="NDC" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateLoaded]"
+                          dataType="dbTimeStamp2"
+                          name="DateLoaded"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WHNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="WHNbr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rebate]"
+                          dataType="numeric"
+                          name="Rebate"
+                          precision="18"
+                          scale="2" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXEC dbo.usp_API_SalesDetail_ETL
+
+	@InvDate = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"@InvDate:Input",{EC41D678-AFBE-4CB1-A26E-29DABD60ED1E};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[DB1.API]"
+                      connectionManagerRefId="Package.ConnectionManagers[DB1.API]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]"
+                          name="ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[WHAccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WHAccountID]"
+                          length="32"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[WHAccountID]"
+                          name="WHAccountID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InvNbr]"
+                          length="32"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvNbr]"
+                          name="InvNbr"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvLine]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InvLine]"
+                          length="32"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvLine]"
+                          name="InvLine"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerName]"
+                          length="75"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerName]"
+                          name="CustomerName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[APIItemNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[APIItemNbr]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[APIItemNbr]"
+                          name="APIItemNbr"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ItemDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ItemDescription]"
+                          length="125"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ItemDescription]"
+                          name="ItemDescription"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Qty]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Qty]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Qty]"
+                          name="Qty"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitAmount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UnitAmount]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitAmount]"
+                          name="UnitAmount"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ItemGrp]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ItemGrp]"
+                          length="5"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ItemGrp]"
+                          name="ItemGrp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctGrp]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AcctGrp]"
+                          length="5"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctGrp]"
+                          name="AcctGrp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Territory]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Territory]"
+                          length="4"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Territory]"
+                          name="Territory"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InvDate]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvDate]"
+                          name="InvDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[LineAmt]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LineAmt]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[LineAmt]"
+                          name="LineAmt"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExtSales]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExtSales]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExtSales]"
+                          name="ExtSales"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderNbr]"
+                          length="15"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderNbr]"
+                          name="OrderNbr"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[NDC_orig]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NDC_orig]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[NDC_orig]"
+                          name="NDC_orig"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[NDC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NDC]"
+                          length="11"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[NDC]"
+                          name="NDC"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateLoaded]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateLoaded]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateLoaded]"
+                          name="DateLoaded"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                          length="15"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Type]"
+                          name="Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[WHNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WHNbr]"
+                          length="2"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[WHNbr]"
+                          name="WHNbr"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Rebate]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Rebate]"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Rebate]"
+                          name="Rebate"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WHAccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="WHAccountID" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InvNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="InvNbr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InvLine]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="InvLine" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="75"
+                          name="CustomerName" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[APIItemNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="APIItemNbr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ItemDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="125"
+                          name="ItemDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Qty]"
+                          dataType="numeric"
+                          name="Qty"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UnitAmount]"
+                          dataType="numeric"
+                          name="UnitAmount"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ItemGrp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="ItemGrp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AcctGrp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="AcctGrp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Territory]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="Territory" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InvDate]"
+                          dataType="dbTimeStamp"
+                          name="InvDate" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LineAmt]"
+                          dataType="numeric"
+                          name="LineAmt"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExtSales]"
+                          dataType="numeric"
+                          name="ExtSales"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="OrderNbr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NDC_orig]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NDC_orig" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NDC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="11"
+                          name="NDC" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateLoaded]"
+                          dataType="dbTimeStamp"
+                          name="DateLoaded" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WHNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="WHNbr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Rebate]"
+                          dataType="numeric"
+                          name="Rebate"
+                          precision="18"
+                          scale="2" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID]"
+                          name="ID" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WHAccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WHAccountID]"
+                          name="WHAccountID" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InvNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InvNbr]"
+                          name="InvNbr" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InvLine]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InvLine]"
+                          name="InvLine" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="75"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerName]"
+                          name="CustomerName" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[APIItemNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[APIItemNbr]"
+                          name="APIItemNbr" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ItemDescription]"
+                          codePage="1252"
+                          dataType="str"
+                          length="125"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ItemDescription]"
+                          name="ItemDescription" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Qty]"
+                          dataType="numeric"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Qty]"
+                          name="Qty"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UnitAmount]"
+                          dataType="numeric"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UnitAmount]"
+                          name="UnitAmount"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ItemGrp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ItemGrp]"
+                          name="ItemGrp" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AcctGrp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AcctGrp]"
+                          name="AcctGrp" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Territory]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Territory]"
+                          name="Territory" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InvDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InvDate]"
+                          name="InvDate" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LineAmt]"
+                          dataType="numeric"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LineAmt]"
+                          name="LineAmt"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExtSales]"
+                          dataType="numeric"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExtSales]"
+                          name="ExtSales"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderNbr]"
+                          name="OrderNbr" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NDC_orig]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NDC_orig]"
+                          name="NDC_orig" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NDC]"
+                          codePage="1252"
+                          dataType="str"
+                          length="11"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NDC]"
+                          name="NDC" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateLoaded]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateLoaded]"
+                          name="DateLoaded" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Type]"
+                          name="Type" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WHNbr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WHNbr]"
+                          name="WHNbr" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Rebate]"
+                          dataType="numeric"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Rebate]"
+                          name="Rebate"
+                          precision="18"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Xfer Data.Paths[OLE DB Source Output]"
+                  endId="Package\Foreach Loop Container\Xfer Data\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Foreach Loop Container\Xfer Data\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{FC567FBA-75E0-42B8-92E4-F9C89CA6DC83}"
+          DTS:From="Package\Foreach Loop Container\Xfer Data"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Update Load Table" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{EFD97B2B-40D2-4C7D-B547-EB8B87737060}"
+          DTS:ObjectName="{EFD97B2B-40D2-4C7D-B547-EB8B87737060}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::varInvDate" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Dates To Pull"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:DelayValidation="True"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C4508D74-D74E-40D5-9882-1F90F3511CE3}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Dates To Pull"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Dates To Pull\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [InvDate]
+FROM API.[dbo].[ETL_SalesDetail_InvDate]
+ORDER BY InvDate ASC</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Dates To Pull\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AAPDW1.SalesODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[AAPDW1.SalesODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InvDate]"
+                      lineageId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvDate]"
+                      name="InvDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InvDate]"
+                      dataType="dbTimeStamp2"
+                      name="InvDate"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InvDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InvDate]"
+                      name="InvDate"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Dates To Pull\Recordset Destination"
+              componentClassID="{C457FD7E-CE98-4C4B-AEFE-F3AE0044F181}"
+              contactInfo="Recordset Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates and populates an in-memory ADO recordset that is available outside of the data flow. Scripts and other package elements can use the recordset. For example, use a recordset to store the names of files that will be loaded into the data warehouse."
+              name="Recordset Destination">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the recordset."
+                  name="VariableName">User::ADORecordset</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Get Dates To Pull\Recordset Destination.Inputs[Recordset Destination Input]"
+                  hasSideEffects="true"
+                  name="Recordset Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Dates To Pull\Recordset Destination.Inputs[Recordset Destination Input].Columns[InvDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InvDate"
+                      lineageId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Dates To Pull.Paths[OLE DB Source Output]"
+              endId="Package\Get Dates To Pull\Recordset Destination.Inputs[Recordset Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Get Dates To Pull\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{38798379-AE80-4C77-9E12-790B9495B464}"
+      DTS:From="Package\Get Dates To Pull"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Foreach Loop Container\Update Load Table"
+          TopLeft="36,87" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Foreach Loop Container\Xfer Data"
+          TopLeft="40,20" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="101.5,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16,25"
+              Start="0,0"
+              End="16,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.5"
+                    Point2="0,12.5"
+                    Point3="4,12.5" />
+                  <mssgle:LineSegment
+                    End="12,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12,12.5"
+                    Point2="16,12.5"
+                    Point3="16,16.5" />
+                  <mssgle:LineSegment
+                    End="16,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="233,184"
+          Size="233,227"
+          Id="Package\Foreach Loop Container"
+          TopLeft="440,199" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Get Dates To Pull"
+          TopLeft="410,68" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="490.5,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="66,89"
+              Start="0,0"
+              End="66,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.5"
+                    Point2="0,44.5"
+                    Point3="4,44.5" />
+                  <mssgle:LineSegment
+                    End="62,44.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62,44.5"
+                    Point2="66,44.5"
+                    Point3="66,48.5" />
+                  <mssgle:LineSegment
+                    End="66,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Xfer Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach Loop Container\Xfer Data\OLE DB Destination"
+          TopLeft="646,199" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Foreach Loop Container\Xfer Data\OLE DB Source"
+          TopLeft="548,101" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Xfer Data.Paths[OLE DB Source Output]"
+          TopLeft="623,143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.5,56"
+              Start="0,0"
+              End="108.5,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="4,28" />
+                  <mssgle:LineSegment
+                    End="104.5,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.5,28"
+                    Point2="108.5,28"
+                    Point3="108.5,32" />
+                  <mssgle:LineSegment
+                    End="108.5,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Xfer Data\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Xfer Data\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Get Dates To Pull">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Get Dates To Pull\Recordset Destination"
+          TopLeft="382,329" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Get Dates To Pull\OLE DB Source"
+          TopLeft="284,105" />
+        <EdgeLayout
+          Id="Package\Get Dates To Pull.Paths[OLE DB Source Output]"
+          TopLeft="359,147">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114,182"
+              Start="0,0"
+              End="114,174.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,87" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,87"
+                    Point2="0,91"
+                    Point3="4,91" />
+                  <mssgle:LineSegment
+                    End="110,91" />
+                  <mssgle:CubicBezierSegment
+                    Point1="110,91"
+                    Point2="114,91"
+                    Point3="114,95" />
+                  <mssgle:LineSegment
+                    End="114,174.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Dates To Pull\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
